@@ -5,7 +5,7 @@
    2. 安装内核更新包
       1. 升级到最新版本 `wsl --update`
       2. 将 WSL 默认版本设置为 WSL 2 `wsl --set-default-version 2`
-   3. 打开Microsoft Store,安装Ubuntu,**我选择的是`Ubuntu-24.04`**, 如果是第一次安装,需要在菜单栏中点击该Ubuntu快捷方式先安装到系统盘
+   3. 打开Microsoft Store,安装Ubuntu,**我选择的是`Ubuntu-24.04`**, 如果是第一次安装,需要在菜单栏中点击该Ubuntu快捷方式先安装到系统盘,期间需要设置用户名和密码
    4. 安装到自定义路径,我是E盘,`E:\User\wsl`
       1. 导出镜像,现在E盘新建上述目录 `wsl --export Ubuntu-24.04 E:\User\wsl\ubuntu.tar`
       2. 导入镜像,取一个和原镜像不同的名字,如`Ubuntu24.04`
@@ -44,6 +44,7 @@
     bestEffortDnsParsing=true     #与dnsTunneling相关，建议不改
     sparseVhd=true                #自动清理磁盘空间，建议不改
     ```
+> `~`对应的windows路径一般是`\\wsl.localhost\Ubuntu24.04\root`
 
 ## 2. [WSL唤醒VsCode](https://code.visualstudio.com/docs/remote/wsl-tutorial)
 
@@ -83,6 +84,16 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
 4. VsCode终端正确显示`nerd-fonts`字体
    1. 设置 - 选择**远程[WSL: Ubuntu24.04]** - 全局搜索 `font family` - 找到`Terminal > Integrated: Font Family` - 输入`'Cascadia Code', Consolas, 'Courier New', monospace,'MesloLGS NF'`
+
+## 4. 配置安装NVM,PNPM
++ 跟随[NVM文档](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)配置安装即可
++ 需要运行`source ~/.zshrc`重新加载`.zshrc`配置文件
++ [PNPM](https://pnpm.io/installation#installing-a-specific-version)安装同上
+
+## 5. 全局安装`commitizen`
++ 全局安装 `npm install -g cz-conventional-changelog`
++ 全局添加适配器 `commitizen init cz-conventional-changelog --save-dev --save-exact`
++ 全局模式下, 需要 ~/.czrc 配置文件, 为 commitizen 指定 Adapter`echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc`
 
 > 参考文章
 > [windows11 安装WSL2全流程](https://www.cnblogs.com/ubirdy/articles/18246999)
